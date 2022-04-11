@@ -8,6 +8,7 @@ authors = ["New-Beginnings1 <<>>"]
 python = "^3.8"
 Flask = "^2.1.1"
 waitress = "^2.1.1"
+docx2txt = "^0.8"
 
 [tool.poetry.dev-dependencies]
 
