@@ -2,7 +2,7 @@ import docx2txt
 import nltk
 import re
 import subprocess
-from pdfminer.high_level import extract_text
+
  
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
@@ -40,12 +40,6 @@ RESERVED_WORDS = [
     'ünivers',
     'okul',
 ]
-
-
-
-
-def extract_text_from_pdf(pdf_path):
-    return extract_text(pdf_path)
 
 
 #----------------------------------------------------------------
@@ -132,16 +126,18 @@ def extract_education(input_text):
     return education
 
  
-if __name__ == '__main__':
-    text = extract_text_from_pdf('resume.pdf')
+def return_resume(text):
     names = extract_names(text)
     phone_number = extract_phone_number(text)
     emails = extract_emails(text)
     skills = extract_skills(text)
     education = extract_education(text)
- 
-    print(names[0])
-    print(phone_number)
-    print(emails[0])
-    print(skills)
-    print(education)
+    resume_parsed = {
+      "name": list(names),
+      "phone": phone_number,
+      "emails": list(emails),
+      "skills": list(skills),
+      "education": list(education)
+    }
+    print(resume_parsed["education"])
+    return resume_parsed
